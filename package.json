@@ -1,0 +1,14 @@
+{
+	"name": "task-management-prisma",
+	"version": "1.0.0",
+	"main": "index.js",
+	"private": true,
+	"workspaces": {
+		"packages": [
+			"packages/*"
+		]
+	},
+	"repository": "https://github.com/erivaldocazinga22/task-management-prisma",
+	"author": "erivaldocazinga22 <cazarthdesogner@gmail.com>",
+	"license": "MIT"
+}
