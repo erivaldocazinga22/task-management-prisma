@@ -1,0 +1,5 @@
+# Ignorar todos os arquivos na pasta 'profile'
+*
+
+# Exceto o próprio .gitignore
+!.gitignore

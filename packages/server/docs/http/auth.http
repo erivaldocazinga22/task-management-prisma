@@ -1,0 +1,33 @@
+POST http://127.0.0.1:3000/api/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "test1@gmail.com",
+    "password": "test1password"
+}
+###
+
+POST http://127.0.0.1:3000/api/auth/login/provider HTTP/1.1
+Content-Type: application/json
+
+{
+    "iss": "https://accounts.google.com",
+    "azp": "338582795627-qiraft4rghr91opmg2sp9hilfgl0t1sk.apps.googleusercontent.com",
+    "aud": "338582795627-qiraft4rghr91opmg2sp9hilfgl0t1sk.apps.googleusercontent.com",
+    "sub": "112075287849020272619",
+    "email": "erivaldomalebo2206@gmail.com",
+    "email_verified": true,
+    "nbf": 1723473335,
+    "name": "Erivaldo Caginga",
+    "picture": "https://lh3.googleusercontent.com/a/ACg8ocJKt3exzeZKoEZN6keCWqs2g6LgqmlJJI-_b86cd06ixvboxys=s96-c",
+    "given_name": "Erivaldo",
+    "family_name": "Caginga",
+    "iat": 1723473635,
+    "exp": 1723477235,
+    "jti": "842159a66eabf3c0bd1eaa6b0a4ca9a551eab8fc"
+}
+
+###
+
+POST http://127.0.0.1:3000/api/auth/validate HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJ0ZXN0MUBnbWFpbC5jb20iLCJuYW1lIjoidGVzdDEiLCJpYXQiOjE3MjM0Nzc2MTksImV4cCI6MjMyODI3NzYxOX0.OMNJ4KGKYN0Ulov5Sqd6LqtKgqqOKqgWG3XDNfOZTTCCfQyffQS7oMc4LT7EnMFMabnVOukyf1pMpinycKBvfg

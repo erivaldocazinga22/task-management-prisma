@@ -1,0 +1,6 @@
+# Ignorar todos os arquivos na pasta 'logs'
+*
+
+# Exceto o próprio .gitignore
+!.gitignore
+../logs/

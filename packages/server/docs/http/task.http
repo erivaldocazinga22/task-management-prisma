@@ -1,0 +1,31 @@
+GET http://127.0.0.1:3000/api/tasks HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0MUBnbWFpbC5jb20iLCJuYW1lIjoidGVzdDEiLCJpYXQiOjE3MjM3NjU5MzIsImV4cCI6MjMyODU2NTkzMn0.5c-7Q9JFoMmXZghFuJ7RwnfwZn3MJ7TWV6mDV0l6TTNGaHIEowMdntDpXykOLr2J0SAMaV7a7bDBYueFvncmyQ 
+
+### 
+GET http://127.0.0.1:3000/api/tasks/f36ed883-0523-49e5-acb0-b60606ee32a4 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0MUBnbWFpbC5jb20iLCJuYW1lIjoidGVzdDEiLCJpYXQiOjE3MjM3NjU5MzIsImV4cCI6MjMyODU2NTkzMn0.5c-7Q9JFoMmXZghFuJ7RwnfwZn3MJ7TWV6mDV0l6TTNGaHIEowMdntDpXykOLr2J0SAMaV7a7bDBYueFvncmyQ 
+
+###
+POST http://127.0.0.1:3000/api/tasks/ HTTP/1.1
+content-type: application/json
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0MUBnbWFpbC5jb20iLCJuYW1lIjoidGVzdDEiLCJpYXQiOjE3MjM3NjU5MzIsImV4cCI6MjMyODU2NTkzMn0.5c-7Q9JFoMmXZghFuJ7RwnfwZn3MJ7TWV6mDV0l6TTNGaHIEowMdntDpXykOLr2J0SAMaV7a7bDBYueFvncmyQ 
+
+{
+    "title": "tarefa 1",
+    "description": "pequena descrição da tarefa 1"
+}
+###
+PUT http://127.0.0.1:3000/api/tasks/f36ed883-0523-49e5-acb0-b60606ee32a4 HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0MUBnbWFpbC5jb20iLCJuYW1lIjoidGVzdDEiLCJpYXQiOjE3MjM3NjU5MzIsImV4cCI6MjMyODU2NTkzMn0.5c-7Q9JFoMmXZghFuJ7RwnfwZn3MJ7TWV6mDV0l6TTNGaHIEowMdntDpXykOLr2J0SAMaV7a7bDBYueFvncmyQ
+
+{
+    "title": "tarefa 1 - update",
+    "description": "pequena descrição da tarefa 1 . update"
+    
+}
+
+###
+DELETE http://127.0.0.1:3000/api/tasks/f36ed883-0523-49e5-acb0-b60606ee32a4 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0MUBnbWFpbC5jb20iLCJuYW1lIjoidGVzdDEiLCJpYXQiOjE3MjM3NjU5MzIsImV4cCI6MjMyODU2NTkzMn0.5c-7Q9JFoMmXZghFuJ7RwnfwZn3MJ7TWV6mDV0l6TTNGaHIEowMdntDpXykOLr2J0SAMaV7a7bDBYueFvncmyQ

@@ -1,0 +1,28 @@
+GET http://127.0.0.1:3000/api/users HTTP/1.1
+
+### 
+GET http://127.0.0.1:3000/api/users/1 HTTP/1.1
+
+###
+POST http://127.0.0.1:3000/api/users/ HTTP/1.1
+content-type: application/json
+Accept: application/json
+
+{
+    "name": "test1",
+    "email": "test1@gmail.com",
+    "password": "test1password"
+}
+###
+PUT http://127.0.0.1:3000/api/users/1 HTTP/1.1
+content-type: application/json
+
+{
+    "name": "updatedTest1",
+    "email": "updatedTest1@gmail.com",
+    "password": "updatedTest1password",
+    
+}
+
+###
+DELETE http://127.0.0.1:3000/api/users/1 HTTP/1.1

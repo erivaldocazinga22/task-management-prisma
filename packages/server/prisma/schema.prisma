@@ -1,0 +1,106 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              Int               @id @default(autoincrement())
+  name            String
+  email           String            @unique
+  avatar_url      String?
+  password        String
+  providerId      String?           @unique
+  created_at      DateTime          @default(now())
+  User_Permission User_Permission[]
+  User_Role       User_Role[]
+  Token           Token[]
+  Task            Task[]
+
+  @@map("users")
+}
+
+model Task {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  status      String   @default("IN_PROGRESS")
+  created_at  DateTime @default(now())
+  userId      Int?
+
+  User User? @relation(fields: [userId], references: [id])
+
+  @@map("tasks")
+}
+
+model Permission {
+  id              Int               @id @default(autoincrement())
+  name            String
+  description     String?
+  created_at      DateTime          @default(now())
+  User_Permission User_Permission[]
+  Permission_Role Permission_Role[]
+
+  @@map("permissions")
+}
+
+model Role {
+  id              Int               @id @default(autoincrement())
+  name            String
+  description     String?
+  created_at      DateTime          @default(now())
+  User_Role       User_Role[]
+  Permission_Role Permission_Role[]
+
+  @@map("roles")
+}
+
+model User_Permission {
+  id           Int @id @default(autoincrement())
+  userId       Int @map("user_id")
+  permissionId Int @map("permission_id")
+
+  User       User       @relation(fields: [userId], references: [id])
+  Permission Permission @relation(fields: [permissionId], references: [id])
+
+  @@map("user_permissions")
+}
+
+model User_Role {
+  id     Int @id @default(autoincrement())
+  userId Int
+  roleId Int
+
+  User User @relation(fields: [userId], references: [id])
+  Role Role @relation(fields: [roleId], references: [id])
+
+  @@map("user_roles")
+}
+
+model Permission_Role {
+  id           Int @id @default(autoincrement())
+  roleId       Int
+  permissionId Int
+
+  Permission Permission @relation(fields: [permissionId], references: [id])
+  Role       Role       @relation(fields: [roleId], references: [id])
+
+  @@map("permission_roles")
+}
+
+model Token {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  token     String
+  provider  String?
+  expiresAt DateTime
+  User      User     @relation(fields: [userId], references: [id])
+
+  @@map("tokens")
+}
