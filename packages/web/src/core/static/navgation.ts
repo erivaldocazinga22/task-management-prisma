@@ -3,8 +3,13 @@ import { Cog8ToothIcon, BellIcon, RectangleStackIcon, UsersIcon, ChatBubbleOvalL
 export const NAVLINK = [
     {
         label: "Tarefas",
-        href: "/task",
+        href: "/",
         icon: RectangleStackIcon
+    },
+    {
+        label: "Mensagens",
+        href: "/messages",
+        icon: ChatBubbleOvalLeftEllipsisIcon
     },
     {
         label: "Notificações",
@@ -12,18 +17,13 @@ export const NAVLINK = [
         icon: BellIcon
     },
     {
-        label: "Mensagens",
-        href: "/",
-        icon: ChatBubbleOvalLeftEllipsisIcon
-    },
-    {
         label: "Team",
-        href: null,
+        href: "/groups/all",
         icon: UsersIcon
     },
     {
         label: "Definições",
-        href: "/",
+        href: "/settings",
         icon: Cog8ToothIcon
     },
 ]

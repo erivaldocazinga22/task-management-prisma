@@ -1,4 +1,5 @@
-import { Navigation } from "@/app/components/Sidebar/Navigation";
+import { Navigation } from "@/app/components/Navigation";
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/app/components/ui/resizable";
 import { useSession } from "@/core/hooks/auth";
 import { Navigate, Outlet } from "react-router-dom";
 
@@ -9,9 +10,19 @@ export default function RootLayout() {
     if (!isLoading && !loggedUser) return <Navigate to="/login" replace />
 
     return (
-        <div className="pl-20">
-            <Navigation />
-            <Outlet />
+        <div className="w-screen h-screen overflow-hidden">
+            <ResizablePanelGroup
+                direction="horizontal"
+                className="min-h-screen"
+            >
+                <ResizablePanel defaultSize={15} minSize={15} maxSize={18} className="p-2">
+                   <Navigation />
+                </ResizablePanel>
+                <ResizableHandle withHandle={false} className="dark:bg-neutral-800" />
+                <ResizablePanel defaultSize={85}>
+                    <Outlet /> 
+                </ResizablePanel>
+            </ResizablePanelGroup>
         </div>
     )
 }
