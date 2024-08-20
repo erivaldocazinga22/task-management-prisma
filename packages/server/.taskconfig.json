@@ -1,0 +1,12 @@
+{
+    "storagePaths": [
+        {
+            "label": "profile",
+            "path": "public/storage/profile/"
+        },
+        {
+            "label": "uploads",
+            "path": "public/storage/uploads/"
+        }
+    ]
+}

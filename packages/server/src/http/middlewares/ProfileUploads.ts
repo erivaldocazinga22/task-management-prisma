@@ -1,7 +1,7 @@
 import multer from "multer";
 import path from "node:path";
 
-export const prifileUploads = multer({ storage: multer.diskStorage({
+const prifileUploads = multer({ storage: multer.diskStorage({
         destination: (request, file, callback) => {
             callback(null, "./public/storage/profile/");
         },
@@ -19,3 +19,5 @@ export const prifileUploads = multer({ storage: multer.diskStorage({
         callback(null, true)
     }
 })
+
+export default prifileUploads;
