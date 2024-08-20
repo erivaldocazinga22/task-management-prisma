@@ -1,0 +1,6 @@
+{
+    "workbench.iconTheme": "symbols",
+    "symbols.files.associations": {
+        "*.taskconfig.json": "brackets-sky"
+    },
+}
