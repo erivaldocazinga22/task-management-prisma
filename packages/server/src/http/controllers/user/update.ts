@@ -24,6 +24,6 @@ export const update = async (request: Request, response: Response) =>  {
             status: 500,
             message: "Ocorreu um erro ao atualizar o usuário!",
             error
-        })
+        });
     }
-}
+};

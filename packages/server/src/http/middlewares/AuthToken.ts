@@ -33,7 +33,8 @@ export const validateToken = async (request: Request, response: Response, next: 
     } catch (error) {
         return response.status(500).json({ 
             status: 500, 
-            message: "Falha ao autenticar o token." 
+            message: "Falha ao autenticar o token.",
+            error
         });
     } 
-}
+};

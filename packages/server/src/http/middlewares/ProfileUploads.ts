@@ -16,8 +16,8 @@ const prifileUploads = multer({ storage: multer.diskStorage({
             callback(null, false);
             throw new Error("Only image files are allowed!");
         }
-        callback(null, true)
+        callback(null, true);
     }
-})
+});
 
 export default prifileUploads;
