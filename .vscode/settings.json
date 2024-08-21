@@ -1,5 +1,8 @@
 {
     "workbench.iconTheme": "symbols",
+    "symbols.folders.associations": {
+        "storage": "folder-database"
+    },
     "symbols.files.associations": {
         "*.taskconfig.json": "brackets-sky"
     },
