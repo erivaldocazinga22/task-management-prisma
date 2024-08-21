@@ -1,10 +1,9 @@
-import { Chalk } from 'core/lib/chalk';
-import fs from 'fs';
-import path from 'path';
+import { Chalk } from "../../core/lib/chalk.config";
+import fs from "fs";
+import path from "path";
 
 
-export async function StorageControl(sourceDir: string, destDir: string) {
-    const chalk = await Chalk();
+export function StorageControl(sourceDir: string, destDir: string) {
     try {
         const sourceFiles = fs.readdirSync(sourceDir).sort();
         const destFiles = fs.readdirSync(destDir).sort();
@@ -44,23 +43,23 @@ export async function StorageControl(sourceDir: string, destDir: string) {
         );
 
         if (missingInDest.length > 0 || missingInSource.length > 0) {
-            console.warn(`Aviso: Diferenças encontradas entre os diretórios "storage-origin" e "storage-remote".`);
-            console.warn('Arquivos faltando no diretório de destino:', missingInDest);
+            console.warn(`⚠️ Aviso: Diferenças encontradas entre os diretórios "storage-origin" e "storage-remote".`);
+            console.warn("Arquivos faltando no diretório de destino:", missingInDest);
 
             console.log(" ");
-
-            console.log(
-                `${chalk.bgCyan.black(' INSTRUÇÕES ')}` +
-                ` ${chalk.white('Para sincronizar os diretórios, execute:')}\n` +
-                `\n  ${chalk.bold.green('yarn storage:link')} ${chalk.gray('(se estiver usando Yarn)')}\n` +
-                `  ${chalk.bold.green('npm run storage:link')} ${chalk.gray('(se estiver usando npm)')}\n` +
-                `\n${chalk.yellow('Certifique-se de ter as permissões adequadas para realizar essa operação.')}`
-            );
+            Chalk().then((chalk) => {
+                console.log(
+                    `${chalk.bgCyan.black(" INSTRUÇÕES ")}` +
+                    ` ${chalk.white("Para sincronizar os diretórios, execute:")}\n` +
+                    `\n  ${chalk.bold.green("yarn storage:link")} ${chalk.gray("(se estiver usando Yarn)")}\n` +
+                    `  ${chalk.bold.green("npm run storage:link")} ${chalk.gray("(se estiver usando npm)")}\n` +
+                    `\n${chalk.yellow("⚠️ Certifique-se de ter as permissões adequadas para realizar essa operação.")}`
+                );
+            })
         } else {
-            console.log(`Os diretórios "storage-origin" e ${destDir} estão sincronizados.`);
-            console.warn('Arquivos faltando no diretório de origem:', missingInSource);
+            console.log(`✅ Os diretórios "storage-origin" e "storage-remote" estão sincronizados.`);
         }
     } catch (error) {
-        console.error('Erro ao verificar diretórios:', error);
+        console.error("❌ Erro ao verificar diretórios:", error);
     }
 }

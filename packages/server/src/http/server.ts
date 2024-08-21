@@ -1,17 +1,17 @@
-import { server } from "./app";
+import { Chalk } from "core/lib/chalk.config";
 import { env } from "../core/lib/env";
-import { StorageControl } from "./middlewares/StorageControl";
+import { server } from "./app";
 import path from "path";
-import { Chalk } from "core/lib/chalk";
+import { StorageControl } from "./middlewares/StorageControl";
 
 const { PORT, SESSION_HOST, PROTOCOL } = env();
 
-server.listen(PORT, async () => {
+server.listen(PORT, () => {
     const sourceDir = path.join(__dirname, "../", "core", "storage");
     const destDir = path.join(__dirname, "../", "../", "public", "storage");
     StorageControl(sourceDir, destDir);
-    const chalk = await Chalk();
-    console.log("");
-    
-    console.log(chalk.bold.green(`Server running at ${PROTOCOL}://${SESSION_HOST}:${PORT}/`));
+    Chalk().then((chalk) => {
+        console.log(" ");
+        console.log(chalk.bold.greenBright(`💥 Server running at ${chalk.underline(`${PROTOCOL}://${SESSION_HOST}:${PORT}/`)}`));
+    });
 });
