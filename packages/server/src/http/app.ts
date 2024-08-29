@@ -1,21 +1,21 @@
 import cors from "cors";
 import morgan from "morgan";
+import { corsOptions } from "../core/lib/cors";
+import helmet from "helmet";
 import express from "express";
-import { AuthRouter, TaskRouter, UserRouter } from "./routers";
+import compression from "compression";
+import { AuthRouter, RoleRouter, TaskRouter, UserRouter } from "./routers";
 import { winstonLogger } from "../core/lib/winston";
 
-export const server = express();
+export const server = express()
+	.use(cors(corsOptions))
+	.use(helmet())
+	.use(compression({ level: 6 }))
 
-server.use(cors({
-    "origin": "*",
-    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-    "preflightContinue": false,
-    "optionsSuccessStatus": 204
-}));
+	.use(express.json())
+	.use(morgan("dev", { stream: { write: (message) => winstonLogger.info(message.trim())}}))
 
-server.use(express.json());
-server.use(morgan("dev", { stream: { write: (message) => winstonLogger.info(message.trim())}}));
-
-server.use("/api/auth", AuthRouter);
-server.use("/api/users", UserRouter);
-server.use("/api/tasks", TaskRouter); 
+	.use("/api/auth", AuthRouter)
+	.use("/api/users", UserRouter)
+	.use("/api/tasks", TaskRouter) 
+	.use("/api/role", RoleRouter);
