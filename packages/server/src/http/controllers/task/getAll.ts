@@ -6,6 +6,16 @@ export const getAll = async (request: Request, response: Response) => {
         const tasks = await prisma.task.findMany({
             where: {
                 userId: parseInt(request.body.user.id)
+            },
+            include: {
+                User: {
+                    select: {
+                        id: true,
+                        name: true,
+                        email: true,
+                        avatar_url: true,
+                    }
+                },
             }
         });
 
@@ -24,6 +34,6 @@ export const getAll = async (request: Request, response: Response) => {
             status: 500,
             message: "Ocorreu um erro ao listar as tarefas!",
             error
-        })
+        });
     }
 } ;

@@ -8,11 +8,7 @@ export function Session() {
         refetchOnWindowFocus: false,
         refetchOnMount: false,
         refetchOnReconnect: false,
-        staleTime: 1000 * 60 * 5,
         retry: 3,
-        retryDelay: 1000,
-        retryOnMount: true,
-        refetchInterval: 1000 * 60 * 5,
     }) 
     
     return {

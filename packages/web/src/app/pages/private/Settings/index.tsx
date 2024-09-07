@@ -1,20 +1,22 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/app/components/ui/avatar";
 import { Button } from "@/app/components/ui/button";
+import { useSession } from "@/core/hooks/auth";
+import { Avatar } from "@/app/components/basic/Avatar";
 import { Link } from "react-router-dom";
+import { Switch } from "@/app/components/ui/switch";
 
 export default function GlobalSettings() {
+    const { data: loggedUser } = useSession();
     return (
-        <div className=" max-h-screen overflow-y-auto">
+        <div className="flex-1 max-h-screen overflow-y-auto">
             <div className="max-w-3xl mx-auto divide-y divide-neutral-800">
-
                 <section className="p-4 flex items-center gap-4">
-                    <Avatar className="w-24 h-24 select-none">
-                        <AvatarImage />
-                        <AvatarFallback className="text-4xl dark:bg-neutral-700">EC</AvatarFallback>
-                    </Avatar>
+                    <Avatar avatar_url={`${loggedUser?.avatar_url}`}
+                        name={`${loggedUser?.name}`}
+                        className="w-24 h-24 text-4xl text-neutral-500"
+                    />
                     <div className="flex-1">
-                        <span className="block text-2xl text-neutral-500">Nome do Fulano</span>
-                        <span className="block text-neutral-500">email-do-fulano@gmail.com</span>
+                        <span className="block text-2xl text-white">{loggedUser?.name}</span>
+                        <span className="block text-neutral-500">{loggedUser?.email}</span>
                     </div>
                     <div className="space-y-2">
                         <Link to="/account/settings">
@@ -62,7 +64,7 @@ export default function GlobalSettings() {
                     </div>
                     <div>
                         <span className="font-semibold">Enviar os dados de diagnóstico necessários</span>
-                        check (ligado/desligado)
+                        check <Switch />
                         <div className="text-sm text-neutral-500 mt-2 space-y-1">
                             <p>Reacolhemos os dados de diagnóstico necessários para manter o Task Management seguro, actualizado e com um desempenho conforme esperado no dispositivo onde está instalado. Por exemplo, qual é o sistema operativo que está a utilizar e se as actulizações form instaladas com êxito.</p>
                             <Link to="/" className="block text-blue-500 hover:text-blue-400">Saiba mais sobre os dados de diagnóstico</Link>

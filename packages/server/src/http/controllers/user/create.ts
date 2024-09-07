@@ -2,7 +2,7 @@ import bcrypt from "bcrypt";
 import { Request, Response } from "express";
 import { prisma } from "../../../core/lib/prisma";
 import { RequestBodySchema } from "../../../core/types/userRequests";
-import { remodeFile } from "../../../core/hooks/removeFile";
+import { removeFile } from "../../../core/hooks/removeFile";
 
 export const create = async (request: Request, response: Response) => {
     const filePath = request.file?.path;
@@ -10,7 +10,7 @@ export const create = async (request: Request, response: Response) => {
         const { data, error } = RequestBodySchema.safeParse(request.body);
         
         if (error) {
-            if (filePath) remodeFile(filePath);
+            if (filePath) removeFile(filePath);
             return response.status(400).json({
                 status: 400,
                 message: "Payload inválido",
@@ -19,26 +19,27 @@ export const create = async (request: Request, response: Response) => {
         }
 
         const hashedPassword = await bcrypt.hash(data.password, 10);
-        const createdUser = await prisma.user.create({
+        await prisma.user.create({
             data: {
                 name: data.name,
                 email: data.email,
                 password: hashedPassword,
                 avatar_url: request.file?.filename,
             }
-        });
-
-        response.status(201).json({
+        }).then(() => response.status(201).json({
             status: 201,
-            message: "Usuário criado com sucesso!",
-            data: createdUser,  
-        });
+            message: "Usuário criado com sucesso!" 
+        })).catch((error) => response.status(501).json({
+            status: 501,
+            message: "Ocorreu um erro ao criar o usuário!",
+            error
+        }));
     } catch (error) {
-        if (filePath) remodeFile(filePath);
+        if (filePath) removeFile(filePath);
         response.status(500).json({
             status: 500,
-            message: "Ocorreu um erro ao criar o usuário!",
-            error: error,
+            message: "Falha na conexão com o servidor! Tente novamente.",
+            error
         });   
     }
-}
+};

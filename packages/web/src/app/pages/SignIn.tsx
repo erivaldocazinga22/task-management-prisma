@@ -8,6 +8,7 @@ import { jwtDecode } from "jwt-decode";
 import { OutherProviderRequest, SignInRequestData, SignInSchema } from "@/core/models/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useOutherProvider, useSignIn } from "@/core/hooks/auth";
+import { Link } from "react-router-dom";
 
 export default function SignIn() {
     const { mutateAsync: handleSignInCredentials } = useSignIn();
@@ -28,8 +29,6 @@ export default function SignIn() {
                 return;
             }
         }
-
-        console.log(data);
         await handleSignInCredentials(data);
     }
 
@@ -49,14 +48,15 @@ export default function SignIn() {
                     <form onSubmit={handleSubmit(SignInFn)} className="space-y-8">
                         <div className="space-y-4">
                             <div className="space-y-1.5">
-                                <label htmlFor="" className="text-sm text-white">Email Address</label>
+                                <label htmlFor="" className="text-sm text-neutral-500">Email Address</label>
                                 <div className="relative">
                                     <Input
                                         type="email"
                                         {...register("email")}
                                         placeholder="ex: jonhDoe@exemplo.com" 
-                                        className={cn(`w-full bg-transparent focus:bg-transparent placeholder:text-task-management-100 border-task-management-100 focus:ring-4 focus:dark:outline-none focus:dark:ring-task-management-first`,
-                                            !errors.email ? (SignInWatch.email && "border-green-500 focus:dark:ring-green-500" ): "border-red-500 focus:dark:ring-red-500"
+                                        className={cn(`w-full bg-transparent focus:bg-transparent placeholder:text-task-management-100 border-task-management-100 
+                                            focus-visible:border-task-management-first focus-visible:ring-4 focus-visible:ring-task-management-first/20`,
+                                            errors.email && "border-red-500 focus-visible:border-red-500 focus-visible:ring-red-500/20"
                                         )}
                                     />
                                     <div className="absolute top-1/2 right-2 -translate-y-1/2">
@@ -69,14 +69,15 @@ export default function SignIn() {
                                 </div>
                             </div>
                             <div className="space-y-1.5">
-                                <label htmlFor="" className="text-sm text-white">Password</label>
+                                <label htmlFor="" className="text-sm text-neutral-500">Password</label>
                                 <div className="relative">
                                     <Input
                                         {...register("password")}
                                         type="password"
                                         placeholder="Digite a sua password" 
-                                        className={cn(`w-full bg-transparent focus:bg-transparent placeholder:text-task-management-100 border-task-management-100 focus:ring-4 focus:dark:outline-none focus:dark:ring-task-management-first`,
-                                            !errors.password ? (SignInWatch.password && "border-green-500 focus:dark:ring-green-500") : "border-red-500 focus:dark:ring-red-500"
+                                        className={cn(`w-full bg-transparent focus:bg-transparent placeholder:text-task-management-100 border-task-management-100 
+                                            focus-visible:border-task-management-first focus-visible:ring-4 focus-visible:ring-task-management-first/20`,
+                                            errors.password && "border-red-500 focus-visible:border-red-500 focus-visible:ring-red-500/20"
                                         )}
                                     />
                                     <div className="absolute top-1/2 right-2 -translate-y-1/2">
@@ -88,8 +89,12 @@ export default function SignIn() {
                                     {errors && <p className="text-red-500 text-sm line-clamp-1">{errors.password?.message}</p>}
                                 </div>
                             </div>
+
                         </div>
                         <Button type="submit" className="w-full cursor-pointer text-white bg-task-management-first hover:bg-task-management-first">Entrar</Button>
+                        <div className="text-center">
+                            <Link to="/add-account" className="text-sm text-center hover:underline hover:text-blue-100">Não tenho uma conta?</Link>
+                        </div>
                     </form>
                     <div className="space-y-2">
                         <span className={`relative w-full h-10 text-center flex items-center justify-center gap-4 text-task-management-100 
@@ -100,14 +105,15 @@ export default function SignIn() {
                             <GoogleLogin
                                 onSuccess={(response) => SignInFn<CredentialResponse>(response)}
                                 theme="filled_black"
+                                ux_mode="popup"
                                 type="standard"
-                                size="large"
-                                shape="square"
+                                size="medium"
+                                shape="rectangular"
                                 context="signin"
                             />
                             {/* <Button type="button" className="space-x-2 cursor-pointer">
-                                <img src="" alt="logo do google" className="w-6 h-6" />
-                                <span className="text-sm">SignIn with Google</span>
+                                <img src="/taskmanagement.svg" alt="logo do google" className="w-6 h-6" />
+                                <span className="text-sm">Fazer login com o Google</span>
                             </Button> */}
                         </div>
                     </div>

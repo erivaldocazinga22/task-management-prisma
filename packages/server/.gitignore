@@ -22,7 +22,7 @@ dist/
 
 # Prisma
 prisma/.env
-prisma/migrations/
+prisma/migrations/*
 prisma/dev.db
 prisma/dev.db-journal
 

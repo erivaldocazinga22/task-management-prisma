@@ -1,4 +1,4 @@
-import { Cog8ToothIcon, BellIcon, RectangleStackIcon, UsersIcon, ChatBubbleOvalLeftEllipsisIcon } from "@heroicons/react/24/outline";
+import { Cog8ToothIcon, RectangleStackIcon, UsersIcon, ChatBubbleOvalLeftEllipsisIcon } from "@heroicons/react/24/outline";
 
 export const NAVLINK = [
     {
@@ -10,11 +10,6 @@ export const NAVLINK = [
         label: "Mensagens",
         href: "/messages",
         icon: ChatBubbleOvalLeftEllipsisIcon
-    },
-    {
-        label: "Notificações",
-        href: null,
-        icon: BellIcon
     },
     {
         label: "Team",

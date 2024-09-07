@@ -11,8 +11,12 @@
     "format": "prettier --write.",
     "test": "vitest"
   },
+  "prisma": {
+    "seed": "prisma migrate dev --name init && tsx src/core/hooks/seed.ts"
+  },
   "dependencies": {
     "@taskmanagement/server": "file:",
+    "@trpc/server": "^11.0.0-rc.487",
     "bcrypt": "^5.1.1",
     "chalk": "^5.3.0",
     "compression": "^1.7.4",

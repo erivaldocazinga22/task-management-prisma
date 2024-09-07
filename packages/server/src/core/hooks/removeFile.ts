@@ -1,6 +1,6 @@
 import fs from "node:fs";
 
-export function remodeFile(filePath: string) {
+export function removeFile(filePath: string) {
     fs.unlink(filePath, (err) => {
         if (err) {
             console.error("Erro ao deletar o arquivo:", err);

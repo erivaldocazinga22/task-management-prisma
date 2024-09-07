@@ -10,5 +10,8 @@
 	},
 	"repository": "https://github.com/erivaldocazinga22/task-management-prisma",
 	"author": "erivaldocazinga22 <cazarthdesogner@gmail.com>",
-	"license": "MIT"
+	"license": "MIT",
+	"dependencies": {
+		"taskmanagement": "file:"
+	}
 }

@@ -7,6 +7,7 @@ import Messages from "./app/pages/private/Messages";
 import Team from "./app/pages/private/Team";
 import GlobalSettings from "./app/pages/private/Settings";
 import AccountSettings from "./app/pages/private/Settings/Account";
+import AddAccount from "./app/pages/AddAccount";
 
 export const Routers = createBrowserRouter([
     {
@@ -15,7 +16,11 @@ export const Routers = createBrowserRouter([
             {
                 path: "/login",
                 element: <SignIn />
-            }
+            },
+            {
+                path: "/add-account",
+                element: <AddAccount />
+            },
         ]
     },
     {
