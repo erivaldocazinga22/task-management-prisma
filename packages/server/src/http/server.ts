@@ -1,17 +1,20 @@
 import { Chalk } from "core/lib/chalk.config";
 import { env } from "../core/lib/env";
 import { server } from "./app";
-import path from "path";
-import { StorageControl } from "./middlewares/StorageControl";
+import { runningController } from "core/hooks/running-controller";
 
 const { PORT, SESSION_HOST, PROTOCOL } = env();
 
 server.listen(PORT, () => {
-    const sourceDir = path.join(__dirname, "../", "core", "storage");
-    const destDir = path.join(__dirname, "../", "../", "public", "storage");
-    StorageControl(sourceDir, destDir);
-    Chalk().then((chalk) => {
+    runningController().then(async isCanRunning => {
+        const chalk = await Chalk();
         console.log(" ");
+        if (!isCanRunning) {
+            console.log(chalk.bold.redBright("❌ Server cannot start, shutting down."));
+            return process.exit(1); 
+        }
         console.log(chalk.bold.greenBright(`💥 Server running at ${chalk.underline(`${PROTOCOL}://${SESSION_HOST}:${PORT}/`)}`));
+        console.log(" ");
     });
-});
+    
+}); 
